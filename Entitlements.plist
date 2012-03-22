@@ -4,13 +4,13 @@
 <dict>
 	<key>com.apple.developer.ubiquity-container-identifiers</key>
 	<array>
-		<string>TEAMID.com.xamarin.samples.icloud</string>
+		<string>$(TeamIdentifier)$(CFBundleIdentifier)</string>
 	</array>
 	<key>com.apple.developer.ubiquity-kvstore-identifier</key>
-	<string>TEAMID.com.xamarin.samples.icloud</string>
-    	<key>keychain-access-groups</key>
+	<string>$(TeamIdentifier)$(CFBundleIdentifier)</string>
+	<key>keychain-access-groups</key>
 	<array>
-		<string>TEAMID.com.xamarin.samples.icloud</string>
+		<string>$(TeamIdentifier)$(CFBundleIdentifier)</string>
 	</array>
 </dict>
 </plist>

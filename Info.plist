@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>iCloud</string>
+	<string>TaskCloud</string>
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
@@ -19,8 +19,18 @@
 			</array>
 		</dict>
 	</array>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Images/Icons/57_icon.png</string>
+		<string>Images/Icons/114_icon.png</string>
+		<string>Images/Icons/72_icon.png</string>
+		<string>Images/Icons/29_icon.png</string>
+		<string>Images/Icons/58_icon.png</string>
+		<string>Images/Icons/50_icon.png</string>
+		<string>Images/Icons/512_icon.png</string>
+	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.xamarin.samples.icloud</string>
+	<string>com.xamarin.samples.taskcloud</string>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>
 	<key>MinimumOSVersion</key>

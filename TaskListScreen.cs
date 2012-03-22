@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using MonoTouch.Dialog;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
@@ -15,7 +16,6 @@ namespace Cloud {
 
 		NSMetadataQuery query;
 		
-
 		public TaskListScreen () : base (UITableViewStyle.Plain, new RootElement("Loading..."))
 		{
 			Title = "TaskCloud";
@@ -60,9 +60,9 @@ namespace Cloud {
 			, (s,e) => {
 				LoadTasks(null);
 			});
-			NavigationItem.LeftBarButtonItem = refreshButton;
-			
 
+			NavigationItem.LeftBarButtonItem = refreshButton;
+			LoadTasks(null);			
 		}
 	
 		public override void ViewWillAppear (bool animated)

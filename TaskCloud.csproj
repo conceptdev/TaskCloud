@@ -8,7 +8,7 @@
     <ProjectGuid>{367D4ECC-D04A-41FB-A784-4D10F30666C8}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>iCloudSample</RootNamespace>
+    <RootNamespace>Cloud</RootNamespace>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,6 +24,7 @@
     <MtouchI18n />
     <MtouchSdkVersion>5.0</MtouchSdkVersion>
     <AssemblyName>iCloud</AssemblyName>
+    <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>none</DebugType>
@@ -55,6 +56,7 @@
     <AssemblyName>iCloudSample</AssemblyName>
     <MtouchLink>Full</MtouchLink>
     <MtouchArch>ARMv7</MtouchArch>
+    <CodesignProvision>D7499AF5-EAB7-4E95-89E0-69E8B63449C5</CodesignProvision>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
     <DebugType>none</DebugType>
@@ -88,5 +90,17 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Images\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Images\Icons\114_icon.png" />
+    <Content Include="Images\Icons\29_icon.png" />
+    <Content Include="Images\Icons\50_icon.png" />
+    <Content Include="Images\Icons\512_icon.png" />
+    <Content Include="Images\Icons\57_icon.png" />
+    <Content Include="Images\Icons\58_icon.png" />
+    <Content Include="Images\Icons\72_icon.png" />
   </ItemGroup>
 </Project>
