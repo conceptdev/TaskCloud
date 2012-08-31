@@ -1,6 +1,17 @@
 TaskCloud
 =========
 
+Contains TWO different 'cloud-based' todo list examples:
+
+Azure
+-----
+Basic usage of Microsoft's Azure Mobile Services REST API. Accesses the REST service directly. Purely provided as an example of making it work - not necessarily ready for a production implementation - wait for the official toolkit!
+
+This app works against the same database that you create in Microsoft's Windows 8 example, so you end up with multiple devices/platforms all sharing the same TodoList on the Azure server.
+
+iCloud
+------
+
 This sample demonstrates how to subclass UIDocument in iOS5 using MonoTouch, and access the files via iCloud.
 
 NOTE: you need at least two devices with the same App Store login to play.
