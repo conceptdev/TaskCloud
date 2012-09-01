@@ -68,7 +68,6 @@
     <MtouchI18n />
     <AssemblyName>iCloudSample</AssemblyName>
     <CodesignProvision>CFA558A3-468A-48C2-9744-4B8BD0A9B79C</CodesignProvision>
-    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

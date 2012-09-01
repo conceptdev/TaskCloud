@@ -9,6 +9,13 @@ Basic usage of Microsoft's Azure Mobile Services REST API. Accesses the REST ser
 
 This app works against the same database that you create in Microsoft's Windows 8 example, so you end up with multiple devices/platforms all sharing the same TodoList on the Azure server.
 
+There are two example projects:
+
+* iOS using MonoTouch
+
+* Android using Mono-for-Android
+
+
 iCloud
 ------
 
