@@ -4,6 +4,7 @@
 *.swp
 *.DS_Store
 *.nib
+*.suo
 
 */bin/*
 */obj/*
@@ -14,3 +15,7 @@ bin/*
 obj/*
 bin/*
 obj/*
+
+*/Resource.designer.cs
+*/*/Resource.designer.cs
+*/*/*/Resource.designer.cs
