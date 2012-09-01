@@ -5,7 +5,7 @@ using MonoTouch.UIKit;
 
 namespace Azure {
 	public class TaskScreen : UIViewController {
-		UIButton saveButton;
+		UIButton saveButton, deleteButton;
 		UILabel doneLabel;
 		UISwitch doneSwitch;
 		UITextView descriptionText, titleText;
@@ -22,13 +22,18 @@ namespace Azure {
 			
 			#region UI Controls (you could do this in XIB if you want)
 			saveButton = UIButton.FromType(UIButtonType.RoundedRect);
-			saveButton.Frame = new RectangleF(10,10,145,50);
+			saveButton.Frame = new RectangleF(10,10,145,40);
 			saveButton.SetTitle("Save", UIControlState.Normal);
 			saveButton.SetTitle("waiting...", UIControlState.Disabled);
 			saveButton.Enabled = false;
+
+			deleteButton = UIButton.FromType(UIButtonType.RoundedRect);
+			deleteButton.Frame = new RectangleF(10,150,145,40);
+			deleteButton.SetTitle("Delete", UIControlState.Normal);
+			deleteButton.Enabled = false;
 			
 			doneSwitch = new UISwitch();
-			doneSwitch.Frame = new RectangleF(180, 25, 145, 50);
+			doneSwitch.Frame = new RectangleF(185, 30, 145, 50);
 			doneSwitch.Enabled = false;
 			doneLabel = new UILabel();
 			doneLabel.Frame = new RectangleF(200, 10, 145, 15);
@@ -47,6 +52,7 @@ namespace Azure {
 
 			// Add the controls to the view
 			this.Add(saveButton);
+			this.Add(deleteButton);
 			this.Add(doneLabel);
 			this.Add(doneSwitch);
 			//this.Add(descriptionText);   // disabled for Azure demo (for now...)
@@ -55,7 +61,6 @@ namespace Azure {
 
 			LoadData ();
 
-
 			saveButton.TouchUpInside += (sender, e) => {
 
 				task.Title = titleText.Text;
@@ -63,10 +68,23 @@ namespace Azure {
 				task.IsDone = doneSwitch.On;
 
 				// save to Azure
-				TaskListScreen.UpdateTodo (task);
+				AzureWebService.UpdateTodo (task);
 
 				descriptionText.ResignFirstResponder ();			// hide keyboard
 				titleText.ResignFirstResponder ();
+
+				NavigationController.PopToRootViewController (true);
+			};
+
+			deleteButton.TouchUpInside += (sender, e) => {
+				
+				// save to Azure
+				AzureWebService.DeleteTodo (task);
+				
+				descriptionText.ResignFirstResponder ();			// hide keyboard
+				titleText.ResignFirstResponder ();
+
+				NavigationController.PopToRootViewController (true); // doesn't reflect deletion yet
 			};
 		}
 
@@ -78,6 +96,7 @@ namespace Azure {
 
 			saveButton.Enabled = true;
 			doneSwitch.Enabled = true;
+			deleteButton.Enabled = true;
 		}
 	}
 }

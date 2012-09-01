@@ -82,8 +82,8 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="TaskListScreen.cs" />
     <Compile Include="TaskScreen.cs" />
-    <Compile Include="Constants.cs" />
     <Compile Include="Task.cs" />
+    <Compile Include="AzureWebService.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

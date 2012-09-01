@@ -32,9 +32,9 @@ namespace Azure {
 		public string ToJson()
 		{
 			var json ="";
-			if (Id < 0)
+			if (Id < 0) // for inserting, do not specify primary-key field
 				json = @"{""text"":"""+Title+@""",""complete"":"+IsDone.ToString().ToLower()+@"}";
-			else
+			else       // for updating, must provide primary-key field
 				json = @"{""id"":"+Id+@",""text"":"""+Title+@""",""complete"":"+IsDone.ToString().ToLower()+@"}";
 			return json;
 		}
