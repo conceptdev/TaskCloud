@@ -6,6 +6,8 @@ There are two sample projects using the same Azure Mobile Services instance:
 
 * Android for Mono for Android
 
+![screenshot](https://raw.github.com/conceptdev/TaskCloud/master/Azure/Screenshots/Screenshots_sml.png)
+
 This sample has a very basic implementation of Microsoft's new (Sep-2012) Azure Mobile Services API.
 
 It is loosely based on this article (ie the syntax for the REST requests)

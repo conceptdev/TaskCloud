@@ -1,7 +1,7 @@
 TaskCloud
 =========
 
-Contains TWO different 'cloud-based' todo list examples:
+Contains TWO different 'cloud-based' todo list examples, one cross-platform Azure example and the Apple-specific iCloud:
 
 Azure
 -----
@@ -14,6 +14,8 @@ There are two example projects:
 * iOS using MonoTouch
 
 * Android using Mono-for-Android
+
+![screenshot](https://raw.github.com/conceptdev/TaskCloud/master/Azure/Screenshots/Screenshots_sml.png)
 
 
 iCloud
