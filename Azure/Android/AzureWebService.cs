@@ -5,6 +5,14 @@ using System.Text;
 using System.Net;
 using System.Json;
 
+using System.Security;
+using System.Security.Cryptography;
+using Java.Security;
+using Java.Security.Cert;
+using Android;
+using Android.Runtime;
+using Javax.Net.Ssl;
+
 namespace Azure
 {
 	/// <summary>
@@ -14,8 +22,8 @@ namespace Azure
 	public static class AzureWebService
 	{
 
-        static string subdomain = "xxxxxxx"; // your subdomain
-        static string MobileServiceAppId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // your application key
+		static string subdomain = "xxxxxxx"; // your subdomain
+		static string MobileServiceAppId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // your application key
 
         static string GetAllUrl = "https://" + subdomain + ".azure-mobile.net/tables/TodoItem"; //?$filter=(complete%20eq%20false)
         static string GetUrl = "https://" + subdomain + ".azure-mobile.net/tables/TodoItem?$filter=(id%20eq%20{0})";
@@ -30,7 +38,9 @@ namespace Azure
 			var tasks = new List<Task>();
 			WebClient client = new WebClient();
 			try {
-                ServicePointManager.CertificatePolicy = new NoCheck(); // HACK: sorry, quick hack around SSL cert issue
+				// HACK: Android issue - see Validator method declaration
+				ServicePointManager.ServerCertificateValidationCallback = Workaround.Validator;
+
 				// make it synchronous
 				client.Headers.Add (HttpRequestHeader.Accept, "application/json");
 				client.Headers.Add ("X-ZUMO-APPLICATION", MobileServiceAppId);
@@ -69,8 +79,10 @@ namespace Azure
             Task task = null;
             WebClient client = new WebClient();
             try {
-                ServicePointManager.CertificatePolicy = new NoCheck(); // HACK: sorry, quick hack around SSL cert issue
-                // make it synchronous
+				// HACK: Android issue - see Validator method declaration
+				ServicePointManager.ServerCertificateValidationCallback = Workaround.Validator;
+
+				// make it synchronous
                 client.Headers.Add(HttpRequestHeader.Accept, "application/json");
                 client.Headers.Add("X-ZUMO-APPLICATION", MobileServiceAppId);
                 var response = client.DownloadData(String.Format(GetUrl, id)); // GET
@@ -104,7 +116,9 @@ namespace Azure
 		{
 			WebClient client = new WebClient();
 			try {
-                ServicePointManager.CertificatePolicy = new NoCheck(); // HACK: sorry, quick hack around SSL cert issue
+				// HACK: Android issue - see Validator method declaration
+				ServicePointManager.ServerCertificateValidationCallback = Workaround.Validator;
+
 				// make it synchronous
 				client.Headers.Add (HttpRequestHeader.Accept, "application/json");
 				client.Headers.Add (HttpRequestHeader.ContentType, "application/json");
@@ -131,7 +145,9 @@ namespace Azure
 		{
 			WebClient client = new WebClient();
 			try {
-                ServicePointManager.CertificatePolicy = new NoCheck(); // HACK: sorry, quick hack around SSL cert issue
+				// HACK: Android issue - see Validator method declaration
+				ServicePointManager.ServerCertificateValidationCallback = Workaround.Validator;
+
 				// make it synchronous
 				client.Headers.Add (HttpRequestHeader.Accept, "application/json");
 				client.Headers.Add (HttpRequestHeader.ContentType, "application/json");
@@ -157,7 +173,9 @@ namespace Azure
         {
             WebClient client = new WebClient();
             try {
-                ServicePointManager.CertificatePolicy = new NoCheck(); // HACK: sorry, quick hack around SSL cert issue
+                // HACK: Android issue - see Validator method declaration
+				ServicePointManager.ServerCertificateValidationCallback = Workaround.Validator;
+
                 // make it synchronous
                 client.Headers.Add(HttpRequestHeader.Accept, "application/json");
                 client.Headers.Add(HttpRequestHeader.ContentType, "application/json");
@@ -176,16 +194,65 @@ namespace Azure
             }
         }
 
-        /// <summary>
-        ///  HACK: sorry, quick hack around SSL cert issue
-        /// </summary>
-        class NoCheck : ICertificatePolicy {
+//        /// <summary>
+//        /// HACK: sorry, quick hack around SSL cert issue (see better hack/fix below)
+//        /// FIXES: "Error getting response stream (Write: The authentication or decryption has failed.): SendFailure"
+//        /// </summary>
+//        /// <remarks>
+//        /// Use like this before attempting WebClient request
+//        ///    ServicePointManager.CertificatePolicy = new NoCheck();
+//        /// </remarks>
+//        class NoCheck : ICertificatePolicy {
+//
+//            public bool CheckValidationResult(ServicePoint srvPoint, System.Security.Cryptography.X509Certificates.X509Certificate certificate, WebRequest request, int certificateProblem)
+//            {
+//                return true;
+//            }
+//        }
 
-            public bool CheckValidationResult(ServicePoint srvPoint, System.Security.Cryptography.X509Certificates.X509Certificate certificate, WebRequest request, int certificateProblem)
-            {
-                return true;
-            }
-        }
+		/// <summary>
+		/// Workaround for the bug described here (because I'm testing on API_8)
+		/// https://bugzilla.xamarin.com/show_bug.cgi?id=6501
+		/// </summary>
+		class Workaround {
+			public static bool Validator (object sender,
+			                       System.Security.Cryptography.X509Certificates.X509Certificate
+			                       certificate,
+			                       System.Security.Cryptography.X509Certificates.X509Chain chain,
+			                       System.Net.Security.SslPolicyErrors sslPolicyErrors)
+			{
+				var sslTrustManager = (IX509TrustManager) typeof (AndroidEnvironment)
+					.GetField ("sslTrustManager",
+					           System.Reflection.BindingFlags.NonPublic |
+					           System.Reflection.BindingFlags.Static)
+						.GetValue (null);
+				Func<Java.Security.Cert.CertificateFactory,
+				System.Security.Cryptography.X509Certificates.X509Certificate,
+				Java.Security.Cert.X509Certificate> c = (f, v) =>
+					f.GenerateCertificate (
+						new System.IO.MemoryStream (v.GetRawCertData ()))
+						.JavaCast<Java.Security.Cert.X509Certificate>();
+				var cFactory = Java.Security.Cert.CertificateFactory.GetInstance (
+					Javax.Net.Ssl.TrustManagerFactory.DefaultAlgorithm);
+				var certs = new List<Java.Security.Cert.X509Certificate>(
+					chain.ChainElements.Count + 1);
+				certs.Add (c (cFactory, certificate));
+				foreach (var ce in chain.ChainElements) {
+					if (certificate.Equals (ce.Certificate))
+						continue;
+					certificate = ce.Certificate;
+					certs.Add (c (cFactory, certificate));
+				}
+				try {
+					sslTrustManager.CheckServerTrusted (certs.ToArray (),
+					                                    Javax.Net.Ssl.TrustManagerFactory.DefaultAlgorithm);
+					return true;
+				}
+				catch (Exception e) {
+					return false;
+				}
+			}
+		}
 	}
 }
 
