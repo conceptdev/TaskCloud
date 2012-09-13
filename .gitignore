@@ -4,6 +4,7 @@
 *.swp
 *.DS_Store
 *.nib
+*.user
 *.suo
 Thumbs.db
 
