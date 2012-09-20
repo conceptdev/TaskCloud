@@ -89,9 +89,9 @@ namespace Azure {
 		}
 
 		void LoadData () {
-			Title = task.Title;
-			titleText.Text = task.Title;
-			descriptionText.Text = task.Description;
+			Title = task.Title??"";
+			titleText.Text = task.Title??"";
+			descriptionText.Text = task.Description??"";
 			doneSwitch.On = task.IsDone;			
 
 			saveButton.Enabled = true;

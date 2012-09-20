@@ -9,8 +9,16 @@ using MonoTouch.Foundation;
 using MonoTouch.UIKit;
 using MonoTouch.ObjCRuntime;
 
-namespace Cloud
-{
+namespace Cloud {
+	/// <summary>Kick everything off</summary>
+	public class Application
+	{
+		static void Main (string[] args)
+		{
+			UIApplication.Main (args, null, "AppDelegate");
+		}
+	}
+
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
@@ -32,7 +40,8 @@ namespace Cloud
 			var u = new TaskListScreen();
 			navController = new UINavigationController();
 			navController.PushViewController (u, false);
-			window.AddSubview(navController.View);
+			//window.AddSubview(navController.View);
+			window.RootViewController = navController;
             window.MakeKeyAndVisible ();
 
 
