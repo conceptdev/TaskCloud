@@ -18,7 +18,7 @@ namespace Azure
 		// i've removed the 'done' filter, because i don't want to hide those tasks for now...
 		static string subdomain = "xxxxxxxxxx"; // your subdomain
 		static string MobileServiceAppId = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // your application key
-		
+
 		static string GetAllUrl = "https://"+subdomain+".azure-mobile.net/tables/TodoItem"; //?$filter=(complete%20eq%20false)
 		static string GetUrl    = "https://"+subdomain+".azure-mobile.net/tables/TodoItem?$filter=(id%20eq%20{0})";
 		static string AddUrl    = "https://"+subdomain+".azure-mobile.net/tables/TodoItem";
