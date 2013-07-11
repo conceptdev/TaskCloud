@@ -9,7 +9,7 @@ Dropbox (Xamarin Component)
 
 You can read about the support for Dropbox's latest Datastore API in [Xamarin's blog post](http://blog.xamarin.com/a-quick-look-at-dropbox%E2%80%99s-new-datastore-api%E2%80%A6-in-c-sharp/).
 
-![screenshot](https://raw.github.com/conceptdev/TaskCloud/master/Dropbox/Screenshots/iOS1.png)
+![screenshot](https://raw.github.com/conceptdev/TaskCloud/master/DropBox/Screenshots/iOS1.png)
 
 Azure (Xamarin Component)
 -----
@@ -50,3 +50,11 @@ There are two example projects:
 * Android using Mono-for-Android
 
 ![screenshot](https://raw.github.com/conceptdev/TaskCloud/master/Azure/Screenshots/Screenshots_sml.png)
+
+See these blog posts for more info:
+
+* [Azure Mobile Services with Xamarin.iOS (MonoTouch)](http://conceptdev.blogspot.com/2012/08/microsofts-azure-mobile-services-and.html)
+
+* [Azure Mobile Services with Xamarin.Android (Mono for Android)](http://conceptdev.blogspot.com/2012/09/microsofts-azure-mobile-services-and.html) 
+
+* [Azure Mobile Services for WP7 and Mac using C#](http://conceptdev.blogspot.com/2012/09/microsofts-azure-mobile-services-and_13.html)
