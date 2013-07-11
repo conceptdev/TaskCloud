@@ -8,6 +8,10 @@ using System.Threading;
 
 namespace TaskyDrop
 {
+	/// <summary>
+	/// Check out the Dropbox Datastore API 
+	/// https://www.dropbox.com/developers/datastore
+	/// </summary>
 	public class DropboxDatabase
 	{
 		public event EventHandler TasksUpdated;
@@ -116,9 +120,9 @@ namespace TaskyDrop
 			var r = table.GetRecord (t.id, out error);
 			if (r == null)
 				table.Insert (t.ToDictionary ());
-			else {
+			else 
 				r.Update (t); 
-			}
+
 			store.SyncAsync (null);
 		}
 		public void Update()

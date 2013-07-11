@@ -9,6 +9,10 @@ using System.Json;
 
 namespace TaskyDrop {
 
+	/// <summary>
+	/// Task is the worst name ever to choose when you are also using System.Threading.Tasks.Task
+	/// but there you go...
+	/// </summary>
 	[Preserve]	
 	public class Task {
 		public Task () 
@@ -19,6 +23,9 @@ namespace TaskyDrop {
 		public string Description { get; set; }
 		public bool IsDone { get; set; }
 
+		/// <summary>
+		/// using this to store the back-end primary key... in this case Dropbox Datastore API uses a string
+		/// </summary>
 		public string id { get; set; }
 
 		public override string ToString ()
