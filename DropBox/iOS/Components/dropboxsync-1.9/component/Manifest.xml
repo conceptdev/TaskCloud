@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="dropboxsync">
+  <name>Dropbox Sync</name>
+  <publisher>Dropbox, Inc.</publisher>
+  <publisher-url>https://www.dropbox.com/developers/sync</publisher-url>
+  <version>1.9</version>
+  <summary>Give your app its own private Dropbox client and leave the syncing to Dropbox.</summary>
+  <samples>
+    <sample id="DropBoxSyncSampleMTD">
+      <name>iOS Sample. Demonstrates Dropbox Awesomeness on iOS.</name>
+      <summary>iOS Sample. Demonstrates Dropbox Awesomeness on iOS.</summary>
+    </sample>
+    <sample id="MonkeyBox">
+      <name>iOS MonkeyBox. Demonstrates Dropbox Datastore Awesomeness on iOS.</name>
+      <summary>iOS MonkeyBox. Demonstrates Dropbox Datastore Awesomeness on iOS.</summary>
+    </sample>
+  </samples>
+</component>

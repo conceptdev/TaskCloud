@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>icon-57</string>
+		<string>icon-114</string>
+		<string>icon-72</string>
+		<string>icon-29</string>
+		<string>icon-58</string>
+		<string>icon-50</string>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>MinimumOSVersion</key>
+	<string>5.0</string>
+	<key>UIDeviceFamily</key>
+	<array>
+		<integer>1</integer>
+	</array>
+	<key>UIFileSharingEnabled</key>
+	<false/>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>CFBundleIdentifier</key>
+	<string>net.conceptdevelopment.taskydrop</string>
+	<key>CFBundleDisplayName</key>
+	<string>TaskyDrop</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>net.conceptdevelopment.taskydrop</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>db-YOUR_APP_ID</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
