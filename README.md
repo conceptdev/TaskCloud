@@ -15,9 +15,13 @@ Azure (Xamarin Component)
 -----
 A Xamarin.iOS example built for this introductory Azure Web Services [YouTube video](http://www.youtube.com/watch?v=3O7eFwyiS8Q). 
 
-![screenshot](https://raw.github.com/conceptdev/TaskCloud/master/QuickStartXamarin/Screenshots/iOS1.png)
+![screenshot](https://raw.github.com/conceptdev/TaskCloud/master/QuickStartXamarin/Screenshots/iOS1.png) 
 
-The other Azure exmaple (below) uses Json and the REST web service directly.
+There is also a Xamarin.Android version (no accompanying video... yet)
+
+![screenshot](https://raw.github.com/conceptdev/TaskCloud/master/QuickStartXamarin/Screenshots/Android1s.png)
+
+The other Azure example (below) uses Json and the REST web service directly.
 
 
 iCloud

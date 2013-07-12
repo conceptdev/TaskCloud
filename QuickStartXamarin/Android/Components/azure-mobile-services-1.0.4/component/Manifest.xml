@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="azure-mobile-services">
+  <name>Azure Mobile Services</name>
+  <publisher>Microsoft</publisher>
+  <publisher-url>http://www.windowsazure.com/en-us/develop/mobile/</publisher-url>
+  <version>1.0.4</version>
+  <summary>Store data in the cloud, authenticate users, and send push notifications.</summary>
+  <samples>
+    <sample id="AzureMobileServices.Sample.Android">
+      <name>Android Sample.</name>
+      <summary>Android Sample</summary>
+    </sample>
+    <sample id="AzureMobileServices.Sample.iOS">
+      <name>iOS Sample.</name>
+      <summary>iOS Sample</summary>
+    </sample>
+  </samples>
+</component>

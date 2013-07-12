@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="Refresh">Refresh</string>
+	<string name="AddItem">Add Item</string>
+	
+	<string name="add_textbox_hint">Add a ToDo item</string>
+    <string name="add_button_text">Add</string>
+    <string name="mobile_services">Mobile Services &amp; Xamarin</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="checkbox_text">Item Text</string>
+</resources>

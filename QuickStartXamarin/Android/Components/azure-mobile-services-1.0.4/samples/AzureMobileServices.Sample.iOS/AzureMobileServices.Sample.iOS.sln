@@ -1,0 +1,59 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureMobileServices.Sample.iOS", "AzureMobileServices.Sample.iOS.csproj", "{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Ad-Hoc|iPhone = Ad-Hoc|iPhone
+		Ad-Hoc|iPhoneSimulator = Ad-Hoc|iPhoneSimulator
+		AppStore|iPhone = AppStore|iPhone
+		AppStore|iPhoneSimulator = AppStore|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Ad-Hoc|iPhone.ActiveCfg = Ad-Hoc|iPhone
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Ad-Hoc|iPhone.Build.0 = Ad-Hoc|iPhone
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Ad-Hoc|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Ad-Hoc|iPhoneSimulator.Build.0 = Ad-Hoc|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Ad-Hoc|iPhoneSimulator.Deploy.0 = Ad-Hoc|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.AppStore|iPhone.ActiveCfg = AppStore|iPhone
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.AppStore|iPhone.Build.0 = AppStore|iPhone
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.AppStore|iPhoneSimulator.ActiveCfg = AppStore|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.AppStore|iPhoneSimulator.Build.0 = AppStore|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.AppStore|iPhoneSimulator.Deploy.0 = AppStore|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Debug|iPhone.Build.0 = Debug|iPhone
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Release|iPhone.ActiveCfg = Release|iPhone
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Release|iPhone.Build.0 = Release|iPhone
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{B403C11B-5A42-45AC-9A1F-D5F5C9EFE853}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Ad-Hoc|iPhone.ActiveCfg = Debug|iPhone
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Ad-Hoc|iPhone.Build.0 = Debug|iPhone
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Ad-Hoc|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Ad-Hoc|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.AppStore|iPhone.ActiveCfg = Debug|iPhone
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.AppStore|iPhone.Build.0 = Debug|iPhone
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.AppStore|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.AppStore|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Debug|iPhone.Build.0 = Debug|iPhone
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Release|iPhone.ActiveCfg = Release|iPhone
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Release|iPhone.Build.0 = Release|iPhone
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{8E35FADF-4690-4044-BA12-EB6011BA7486}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Sample.csproj
+	EndGlobalSection
+EndGlobal
