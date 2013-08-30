@@ -14,8 +14,7 @@ namespace Parse {
 	public class TaskListScreen : DialogViewController {
 
 		UIBarButtonItem addButton;
-		UIButton addButton2;
-		
+
 		List<Task> tasks; // local copy of task list
 
 		public TaskListScreen () : base (UITableViewStyle.Plain, new RootElement("Loading..."))
@@ -31,35 +30,29 @@ namespace Parse {
 			tasks = new List<Task>();
 		}
 
-		public override void ViewDidLoad ()
+		public override async void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
-			addButton = new UIBarButtonItem(UIBarButtonSystemItem.Add, async (s,e) => {
+			addButton = new UIBarButtonItem(UIBarButtonSystemItem.Add, (s,e) => {
 				var task = new Task() {Title="<new task>"};
-				// Save to Parse
-				await task.ToParseObject().SaveAsync();
-				tasks.Add (task);
-				Reload (); // show the new task
+
+				var ts = new TaskScreen (task, this);
+				NavigationController.PushViewController (ts, true);
 			});
 			NavigationItem.RightBarButtonItem = addButton;
 
-			addButton2 = UIButton.FromType (UIButtonType.Custom);
-			addButton2.Frame = new System.Drawing.RectangleF ();
-			addButton2.TouchUpInside += async (s,e) => {
-				var task = new Task() {Title="<new task>"};
-				// Save to Parse
-				await task.ToParseObject().SaveAsync();
-				tasks.Add (task);
-
-				var ts = new TaskScreen (task);
-				NavigationController.PushViewController (ts, true);
-			};
-			NavigationItem.RightBarButtonItem = addButton;
+			await ReloadAsync();
 		}
 	
-		public override async void ViewWillAppear (bool animated)
+		public override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
+
+			Reload ();
+		}
+
+		public async System.Threading.Tasks.Task ReloadAsync()
+		{
 			tasks = await Task.GetAll();
 			Reload ();
 		}
@@ -70,7 +63,7 @@ namespace Parse {
 			var tasklist = from task in tasks
 				orderby task.Title
 					select (Element)new TickElement (task.Title, task.IsDone, () => {
-				var ts = new TaskScreen (task);
+				var ts = new TaskScreen (task, this);
 				NavigationController.PushViewController (ts, true);
 			});
 

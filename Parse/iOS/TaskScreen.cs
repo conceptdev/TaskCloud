@@ -11,9 +11,11 @@ namespace Parse {
 		UITextView descriptionText, titleText;
 
 		Task task;
-		
-		public TaskScreen (Task t) {
+		TaskListScreen screen;
+
+		public TaskScreen (Task t, TaskListScreen caller) {
 			task = t;
+			screen = caller;
 		}
 
 		public override void ViewDidLoad ()
@@ -72,7 +74,7 @@ namespace Parse {
 			this.Add(titleText);
 			#endregion
 
-			LoadData ();
+			Populate ();
 
 			saveButton.TouchUpInside += async (sender, e) => {
 
@@ -87,6 +89,7 @@ namespace Parse {
 
 				// save to Parse
 				await task.ToParseObject().SaveAsync();
+				await screen.ReloadAsync();
 			};
 
 			deleteButton.TouchUpInside += async (sender, e) => {
@@ -94,14 +97,15 @@ namespace Parse {
 				descriptionText.ResignFirstResponder ();			// hide keyboard
 				titleText.ResignFirstResponder ();
 
-				NavigationController.PopToRootViewController (true); // doesn't reflect deletion yet
+				NavigationController.PopToRootViewController (true); 
 
 				// delete from Parse
 				await task.ToParseObject().DeleteAsync();
+				await screen.ReloadAsync();
 			};
 		}
 
-		void LoadData () 
+		void Populate () 
 		{
 			//Title = task.Title??"";
 			titleText.Text = task.Title??"";
