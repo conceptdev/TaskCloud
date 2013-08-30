@@ -18,7 +18,7 @@ namespace Parse {
 			screen = caller;
 		}
 
-		public override void ViewDidLoad ()
+		public async override void ViewDidLoad ()
 		{	
 			base.ViewDidLoad ();
 			
@@ -74,8 +74,6 @@ namespace Parse {
 			this.Add(titleText);
 			#endregion
 
-			Populate ();
-
 			saveButton.TouchUpInside += async (sender, e) => {
 
 				task.Title = titleText.Text;
@@ -88,8 +86,14 @@ namespace Parse {
 				NavigationController.PopToRootViewController (true);
 
 				// save to Parse
-				await task.ToParseObject().SaveAsync();
-				await screen.ReloadAsync();
+				try {
+					await task.ToParseObject().SaveAsync();
+					await screen.ReloadAsync();
+				} catch (ParseException pe) {
+
+				} finally {
+
+				}
 			};
 
 			deleteButton.TouchUpInside += async (sender, e) => {
@@ -100,17 +104,42 @@ namespace Parse {
 				NavigationController.PopToRootViewController (true); 
 
 				// delete from Parse
-				await task.ToParseObject().DeleteAsync();
-				await screen.ReloadAsync();
+				try {
+					UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+					await task.ToParseObject().DeleteAsync();
+					await screen.ReloadAsync();
+				} catch (ParseException pe) {
+
+				} finally {
+					UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+				}
 			};
+
+			await Populate ();
 		}
 
-		void Populate () 
+		async System.Threading.Tasks.Task Populate () 
 		{
+			Title = "loading...";
+			Task ta = new Task();
+
+			try {
+				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+				var query = ParseObject.GetQuery("Task").WhereEqualTo("objectId", task.Id);
+				var t = await query.FirstAsync();
+				ta = Task.FromParseObject (t);
+			} catch (ParseException pe) {
+
+			} finally {
+				Title = "";
+				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+			}
+
+
 			//Title = task.Title??"";
-			titleText.Text = task.Title??"";
-			descriptionText.Text = task.Description??"";
-			doneSwitch.On = task.IsDone;			
+			titleText.Text = ta.Title??"";
+			descriptionText.Text = ta.Description??"";
+			doneSwitch.On = ta.IsDone;			
 
 			saveButton.Enabled = true;
 			doneSwitch.Enabled = true;

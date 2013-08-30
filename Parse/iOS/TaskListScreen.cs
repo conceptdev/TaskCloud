@@ -53,7 +53,14 @@ namespace Parse {
 
 		public async System.Threading.Tasks.Task ReloadAsync()
 		{
-			tasks = await Task.GetAll();
+			try {
+				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+				tasks = await Task.GetAll();
+			} catch (ParseException pe) {
+
+			} finally {
+				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+			}
 			Reload ();
 		}
 

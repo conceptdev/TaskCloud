@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="com.xamarin.samples.taskyazure" android:installLocation="internalOnly">
+  <application android:label="TaskyAzure" android:debuggable="true">
+  </application>
+  <uses-sdk android:minSdkVersion="8" android:targetSdkVersion="14" />
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.SET_DEBUG_APP" />
+</manifest>

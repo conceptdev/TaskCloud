@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<component format="1" id="parse">
+  <name>Parse</name>
+  <publisher>Parse, Inc.</publisher>
+  <publisher-url>http://www.parse.com</publisher-url>
+  <docs-url>http://www.parse.com/docs/dotnet_guide</docs-url>
+  <version>1.2.6</version>
+  <summary>Add a cloud backend to your iOS and Android apps in minutes.</summary>
+  <samples>
+    <sample id="ParseiOSStarterProject">
+      <name>iOS Starter Project.</name>
+      <summary>A simple starter project configured to use Parse.</summary>
+    </sample>
+    <sample id="ParseAndroidStarterProject">
+      <name>Android Starter Project.</name>
+      <summary>A simple starter project configured to use Parse.</summary>
+    </sample>
+  </samples>
+</component>
