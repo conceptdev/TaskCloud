@@ -15,7 +15,7 @@
         android:layout_below="@+id/NameLabel"
         android:imeOptions="actionNext"
         android:maxLines="1" />
-<!--    <TextView
+    <TextView
         android:id="@+id/NotesLabel"
         android:text="Notes:"
         android:layout_width="fill_parent"
@@ -28,26 +28,36 @@
         android:layout_below="@+id/NotesLabel"
         android:maxLines="1"
         android:imeOptions="actionDone" />
--->
 <!-- was layout_below="@+id/txtNotes" -->
     <CheckBox
         android:id="@+id/chkDone"
-        android:layout_below="@+id/txtName"
+        android:layout_below="@+id/txtNotes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done" />
-    <Button
-        android:id="@+id/btnCancelDelete"
-        android:text="Delete"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/chkDone" />
-    <Button
-        android:id="@+id/btnSave"
-        android:text="Save"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dip"
-        android:paddingBottom="10dip"
-        android:layout_below="@+id/btnCancelDelete" />
+        android:layout_below="@+id/chkDone"
+        android:layout_centerInParent="true">
+        <Button
+            android:id="@+id/btnSave"
+            android:text="Save"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dip"
+            android:paddingBottom="10dip"
+            android:background="#51BD3F"
+            android:layout_marginRight="10dip"
+            android:textColor="#ffffff" />
+        <Button
+            android:id="@+id/btnCancelDelete"
+            android:text="Delete"
+            android:layout_width="100dip"
+            android:layout_height="wrap_content"
+            android:background="#F91D58"
+            android:layout_marginLeft="10dip"
+            android:textColor="#ffffff" />
+    </LinearLayout>
 </RelativeLayout>

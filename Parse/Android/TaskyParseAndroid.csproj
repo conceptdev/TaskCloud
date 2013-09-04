@@ -31,7 +31,6 @@
     <ConsolePause>False</ConsolePause>
     <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
     <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
-    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -76,6 +75,9 @@
     <AndroidResource Include="Resources\drawable\bluebutton.axml" />
     <AndroidResource Include="Resources\drawable\launcher.png" />
     <AndroidResource Include="Resources\layout\TaskListScreen.axml" />
+    <AndroidResource Include="Resources\values\styles.xml" />
+    <AndroidResource Include="Resources\values-v11\styles.xml" />
+    <AndroidResource Include="Resources\values-v14\styles.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Novell\Novell.MonoDroid.CSharp.targets" />
   <ItemGroup />
@@ -85,5 +87,9 @@
       <Version>1.2.6</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\values-v11\" />
+    <Folder Include="Resources\values-v14\" />
   </ItemGroup>
 </Project>

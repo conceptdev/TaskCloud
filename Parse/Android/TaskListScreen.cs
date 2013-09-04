@@ -5,9 +5,10 @@ using Android.OS;
 using Android.Widget;
 using Android.Graphics;
 using Android.Views;
+using Android.Content.PM;
 
 namespace Parse {
-	[Activity (Label = "TaskyParse", MainLauncher = true, Icon="@drawable/launcher")]			
+	[Activity (Label = "TaskyParse", MainLauncher = true, Icon="@drawable/launcher", Theme = "@style/AppTheme", ConfigurationChanges = ConfigChanges.Orientation)]			
 	public class HomeScreen : Activity {
 		protected TaskListAdapter taskList;
 		protected IList<Task> tasks = new List<Task>();

@@ -10,9 +10,10 @@ using Android.Runtime;
 using Android.Widget;
 using Android.Graphics;
 using Android.Views;
+using Android.Content.PM;
 
 namespace Parse {
-	[Activity (Label = "Task Details")]			
+	[Activity (Label = "Task Details", Icon="@drawable/launcher", Theme = "@style/AppTheme", ConfigurationChanges = ConfigChanges.Orientation)]			
 	public class TaskScreen : Activity {
 		protected Task task = new Task();
 		protected Button deleteButton = null;
@@ -44,7 +45,7 @@ namespace Parse {
 
 			// find all our controls
 			nameTextEdit = FindViewById<EditText>(Resource.Id.txtName);
-			//notesTextEdit = FindViewById<EditText>(Resource.Id.txtNotes);
+			notesTextEdit = FindViewById<EditText>(Resource.Id.txtNotes);
 			saveButton = FindViewById<Button>(Resource.Id.btnSave);
 			doneCheckbox = FindViewById<CheckBox>(Resource.Id.chkDone);
 			deleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
@@ -67,7 +68,7 @@ namespace Parse {
 			nameTextEdit.Text = task.Title;
 			
 			// notes
-			//notesTextEdit.Text = task.Notes;
+			notesTextEdit.Text = task.Description;
 
 			doneCheckbox.Checked = task.IsDone;
 
@@ -93,7 +94,7 @@ namespace Parse {
 		protected async void Save(object sender, EventArgs e)
 		{
             task.Title = nameTextEdit.Text;
-			//task.Notes = notesTextEdit.Text;
+			task.Description = notesTextEdit.Text;
 			task.IsDone = doneCheckbox.Checked;
 
 			try {
