@@ -57,7 +57,7 @@ namespace Parse {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 				tasks = await Task.GetAll();
 			} catch (ParseException pe) {
-
+				Console.WriteLine ("Parse Exception:{0}", pe.Message);
 			} finally {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			}

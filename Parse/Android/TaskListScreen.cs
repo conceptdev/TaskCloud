@@ -7,14 +7,14 @@ using Android.Graphics;
 using Android.Views;
 
 namespace Parse {
-	[Activity (Label = "TaskyAzure", MainLauncher = true, Icon="@drawable/launcher")]			
+	[Activity (Label = "TaskyParse", MainLauncher = true, Icon="@drawable/launcher")]			
 	public class HomeScreen : Activity {
 		protected TaskListAdapter taskList;
-		protected IList<Task> tasks;
+		protected IList<Task> tasks = new List<Task>();
 		protected Button addTaskButton = null;
 		protected ListView taskListView = null;
 		
-		protected override void OnCreate (Bundle bundle)
+		protected async override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 			
@@ -39,7 +39,8 @@ namespace Parse {
 			// wire up add task button handler
 			if(addTaskButton != null) {
 				addTaskButton.Click += (sender, e) => {
-					StartActivity(typeof(TaskScreen));
+					var taskDetails = new Intent (this, typeof (TaskScreen));
+					StartActivity (taskDetails);
 				};
 			}
 			
@@ -52,21 +53,24 @@ namespace Parse {
 				};
 			}
 
-			//tasks = AzureWebService.LoadTodos (Reload);
+			await ReloadAsync();
 		}
 		
-		protected override void OnResume ()
+		protected async override void OnResume ()
 		{
 			base.OnResume ();
-
-			// yep, we go to the network on every resume... this is just a demo after all
-			tasks = AzureWebService.LoadTodos (Reload);
+			await ReloadAsync ();
 		}
 
-		void Reload(List<Task> tasks) 
+		async System.Threading.Tasks.Task ReloadAsync () 
 		{
-            this.tasks = tasks;
-			// create our adapter
+			this.tasks = await Task.GetAll();
+			Reload ();
+		}
+
+		void Reload() 
+		{
+            // create our adapter
 			taskList = new TaskListAdapter(this, tasks);
 			
 			//Hook up our adapter to our ListView

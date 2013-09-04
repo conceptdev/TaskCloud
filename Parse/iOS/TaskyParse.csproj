@@ -89,6 +89,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="TaskListScreen.cs" />
     <Compile Include="TaskScreen.cs" />
+    <Compile Include="Task.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -105,12 +106,6 @@
     <BundleResource Include="Resources\58_icon.png" />
     <BundleResource Include="Resources\72_icon.png" />
     <BundleResource Include="Resources\Default-568h%402x.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Core\Core.csproj">
-      <Project>{AEA7BE73-4461-4E5C-91D0-B4C4F9B5BCCB}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="parse">

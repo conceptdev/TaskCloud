@@ -23,15 +23,17 @@ namespace Parse
 	[Register ("AppDelegate")]
 	public class AppDelegate : UIApplicationDelegate
 	{
-		UINavigationController navController;
+		public AppDelegate ()
+		{
+			// https://parse.com/apps/YOUR_APP_NAME/edit#app_keys
+			// ApplicationId, Windows/.NET/Client key
+			//ParseClient.Initialize ("APPLICATION_ID", "WINDOWS_KEY");
 
+		}
+		UINavigationController navController;
 		UIWindow window;
 		public override bool FinishedLaunching (UIApplication app, NSDictionary options)
 		{
-			// https://parse.com/apps/YOUR_APP_NAME/edit#app_keys
-			// ApplicationId, Client key
-			ParseClient.Initialize ("APPLICATION_ID", "WINDOWS_KEY");
-
 
 			UINavigationBar.Appearance.TintColor = UIColor.FromRGB (11, 97, 206);
 			

@@ -46,9 +46,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Compile Include="Task.cs" />
-  </ItemGroup>
-  <ItemGroup>
     <XamarinComponentReference Include="parse">
       <InstallationInProgress>False</InstallationInProgress>
       <Version>1.2.6</Version>

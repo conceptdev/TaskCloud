@@ -16,9 +16,7 @@
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AssemblyName>TaskyAndroid</AssemblyName>
     <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
-    <AndroidUseSharedRuntime>False</AndroidUseSharedRuntime>
     <AndroidSupportedAbis>armeabi%3barmeabi-v7a%3bx86</AndroidSupportedAbis>
-    <AndroidStoreUncompressedFileExtensions />
     <MandroidI18n />
     <AndroidLinkMode>SdkOnly</AndroidLinkMode>
   </PropertyGroup>
@@ -31,8 +29,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
-    <AndroidLinkSkip />
-    <EmbedAssembliesIntoApk>True</EmbedAssembliesIntoApk>
+    <EmbedAssembliesIntoApk>False</EmbedAssembliesIntoApk>
+    <AndroidSupportedAbis>armeabi,armeabi-v7a,x86</AndroidSupportedAbis>
+    <AndroidUseSharedRuntime>true</AndroidUseSharedRuntime>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -41,6 +40,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>False</ConsolePause>
+    <AndroidStoreUncompressedFileExtensions />
+    <AndroidUseSharedRuntime>false</AndroidUseSharedRuntime>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -62,6 +63,7 @@
     <Compile Include="TaskScreen.cs" />
     <Compile Include="TaskListScreen.cs" />
     <Compile Include="Task.cs" />
+    <Compile Include="App.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -79,7 +81,7 @@
   <ItemGroup />
   <ItemGroup>
     <XamarinComponentReference Include="parse">
-      <InstallationInProgress>True</InstallationInProgress>
+      <InstallationInProgress>False</InstallationInProgress>
       <Version>1.2.6</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>

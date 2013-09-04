@@ -12,7 +12,6 @@ using Android.Graphics;
 using Android.Views;
 
 namespace Parse {
-	//TODO: implement proper lifecycle methods
 	[Activity (Label = "Task Details")]			
 	public class TaskScreen : Activity {
 		protected Task task = new Task();
@@ -21,8 +20,9 @@ namespace Parse {
 		protected EditText nameTextEdit = null;
 		protected Button saveButton = null;
 		CheckBox doneCheckbox;
-		
-		protected override void OnCreate (Bundle bundle)
+		string taskID;
+
+		protected async override void OnCreate (Bundle bundle)
 		{
 			base.OnCreate (bundle);
 
@@ -40,55 +40,75 @@ namespace Parse {
             // set our layout to be the details screen
             SetContentView(Resource.Layout.TaskDetails);
 
-            int taskID = Intent.GetIntExtra("TaskID", -1);
-			if (taskID >= 0) 
-				;//task = AzureWebService.GetTodo(taskID); // from Azure
-            else
-                task = new Task();
-			
+            taskID = Intent.GetStringExtra ("TaskID");
+
+			// find all our controls
 			nameTextEdit = FindViewById<EditText>(Resource.Id.txtName);
 			//notesTextEdit = FindViewById<EditText>(Resource.Id.txtNotes);
 			saveButton = FindViewById<Button>(Resource.Id.btnSave);
 			doneCheckbox = FindViewById<CheckBox>(Resource.Id.chkDone);
-			
-			// find all our controls
 			cancelDeleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
 			
 			// set the cancel delete based on whether or not it's an existing task
-			cancelDeleteButton.Text = (task.Id == "" ? "Cancel" : "Delete");
-			
+			cancelDeleteButton.Text = (taskID == "" ? "Cancel" : "Delete");
+
+			// button clicks 
+			cancelDeleteButton.Click += (sender, e) => { CancelDelete(); };
+			saveButton.Click += (sender, e) => { Save(); };
+
+			if (!String.IsNullOrEmpty(taskID)) 
+				task = await Populate();
+			else
+				task = new Task();
+
 			// name
 			nameTextEdit.Text = task.Title;
 			
 			// notes
 			//notesTextEdit.Text = task.Notes;
-			
-			doneCheckbox.Checked = task.IsDone;
 
-			// button clicks 
-			cancelDeleteButton.Click += (sender, e) => { CancelDelete(); };
-			saveButton.Click += (sender, e) => { Save(); };
+			doneCheckbox.Checked = task.IsDone;
 		}
 
-		protected void Save()
+		async System.Threading.Tasks.Task<Parse.Task> Populate () 
+		{
+			Task ta = new Task();
+
+			try {
+				var query = ParseObject.GetQuery("Task").WhereEqualTo("objectId", taskID);
+				var t = await query.FirstAsync();
+				ta = Task.FromParseObject (t);
+			} catch (ParseException pe) {
+				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+			}
+			return ta;
+		}
+
+		protected async void Save()
 		{
             task.Title = nameTextEdit.Text;
 			//task.Notes = notesTextEdit.Text;
 			task.IsDone = doneCheckbox.Checked;
-			if (task.Id != "") 
-				; //AzureWebService.UpdateTodo (task);
-            else
-				; //AzureWebService.AddTodo(task);
 
-			Finish();
+			try {
+				await task.ToParseObject().SaveAsync();
+				Finish();
+			} catch (ParseException pe) {
+				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+				Finish();
+			} 
 		}
 		
-		protected void CancelDelete()
+		protected async void CancelDelete()
 		{
-			if (task.Id != "")
-				; //AzureWebService.DeleteTodo(task);
-			
-			Finish();
+
+			try {
+				await task.ToParseObject().DeleteAsync();
+				Finish();
+			} catch (ParseException pe) {
+				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+				Finish();
+			} 
 		}
 	}
 }

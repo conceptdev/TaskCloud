@@ -2,6 +2,7 @@ using System.Drawing;
 using MonoTouch.Foundation;
 using MonoTouch.ObjCRuntime;
 using MonoTouch.UIKit;
+using System;
 
 namespace Parse {
 	public class TaskScreen : UIViewController {
@@ -90,7 +91,7 @@ namespace Parse {
 					await task.ToParseObject().SaveAsync();
 					await screen.ReloadAsync();
 				} catch (ParseException pe) {
-
+					Console.WriteLine ("Parse Exception:{0}", pe.Message);
 				} finally {
 
 				}
@@ -109,7 +110,7 @@ namespace Parse {
 					await task.ToParseObject().DeleteAsync();
 					await screen.ReloadAsync();
 				} catch (ParseException pe) {
-
+					Console.WriteLine ("Parse Exception:{0}", pe.Message);
 				} finally {
 					UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 				}
@@ -129,7 +130,7 @@ namespace Parse {
 				var t = await query.FirstAsync();
 				ta = Task.FromParseObject (t);
 			} catch (ParseException pe) {
-
+				Console.WriteLine ("Parse Exception:{0}", pe.Message);
 			} finally {
 				Title = "";
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
