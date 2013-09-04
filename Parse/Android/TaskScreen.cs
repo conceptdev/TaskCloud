@@ -15,7 +15,7 @@ namespace Parse {
 	[Activity (Label = "Task Details")]			
 	public class TaskScreen : Activity {
 		protected Task task = new Task();
-		protected Button cancelDeleteButton = null;
+		protected Button deleteButton = null;
 		protected EditText notesTextEdit = null;
 		protected EditText nameTextEdit = null;
 		protected Button saveButton = null;
@@ -47,14 +47,16 @@ namespace Parse {
 			//notesTextEdit = FindViewById<EditText>(Resource.Id.txtNotes);
 			saveButton = FindViewById<Button>(Resource.Id.btnSave);
 			doneCheckbox = FindViewById<CheckBox>(Resource.Id.chkDone);
-			cancelDeleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
+			deleteButton = FindViewById<Button>(Resource.Id.btnCancelDelete);
 			
 			// set the cancel delete based on whether or not it's an existing task
-			cancelDeleteButton.Text = (taskID == "" ? "Cancel" : "Delete");
+			deleteButton.Enabled = false;
+			saveButton.Text = "waiting...";
+			saveButton.Enabled = false;
 
 			// button clicks 
-			cancelDeleteButton.Click += (sender, e) => { CancelDelete(); };
-			saveButton.Click += (sender, e) => { Save(); };
+			deleteButton.Click += Delete;
+			saveButton.Click += Save;
 
 			if (!String.IsNullOrEmpty(taskID)) 
 				task = await Populate();
@@ -68,6 +70,10 @@ namespace Parse {
 			//notesTextEdit.Text = task.Notes;
 
 			doneCheckbox.Checked = task.IsDone;
+
+			saveButton.Text = "Save";
+			saveButton.Enabled = true;
+			deleteButton.Enabled = true;
 		}
 
 		async System.Threading.Tasks.Task<Parse.Task> Populate () 
@@ -84,7 +90,7 @@ namespace Parse {
 			return ta;
 		}
 
-		protected async void Save()
+		protected async void Save(object sender, EventArgs e)
 		{
             task.Title = nameTextEdit.Text;
 			//task.Notes = notesTextEdit.Text;
@@ -99,9 +105,8 @@ namespace Parse {
 			} 
 		}
 		
-		protected async void CancelDelete()
+		protected async void Delete(object sender, EventArgs e)
 		{
-
 			try {
 				await task.ToParseObject().DeleteAsync();
 				Finish();

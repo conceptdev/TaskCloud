@@ -28,7 +28,8 @@
         android:layout_below="@+id/NotesLabel"
         android:maxLines="1"
         android:imeOptions="actionDone" />
--->  <!-- was layout_below="@+id/txtNotes" -->
+-->
+<!-- was layout_below="@+id/txtNotes" -->
     <CheckBox
         android:id="@+id/chkDone"
         android:layout_below="@+id/txtName"
@@ -37,7 +38,7 @@
         android:text="Done" />
     <Button
         android:id="@+id/btnCancelDelete"
-        android:text="Cancel"
+        android:text="Delete"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/chkDone" />

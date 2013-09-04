@@ -75,46 +75,48 @@ namespace Parse {
 			this.Add(titleText);
 			#endregion
 
-			saveButton.TouchUpInside += async (sender, e) => {
+			saveButton.TouchUpInside += Save;
+//			async (sender, e) => {
+//
+//				task.Title = titleText.Text;
+//				task.Description = descriptionText.Text;
+//				task.IsDone = doneSwitch.On;
+//
+//				descriptionText.ResignFirstResponder ();			// hide keyboard
+//				titleText.ResignFirstResponder ();
+//
+//				NavigationController.PopToRootViewController (true);
+//
+//				// save to Parse
+//				try {
+//					await task.ToParseObject().SaveAsync();
+//					await screen.ReloadAsync();
+//				} catch (ParseException pe) {
+//					Console.WriteLine ("Parse Exception:{0}", pe.Message);
+//				} finally {
+//
+//				}
+//			};
 
-				task.Title = titleText.Text;
-				task.Description = descriptionText.Text;
-				task.IsDone = doneSwitch.On;
-
-				descriptionText.ResignFirstResponder ();			// hide keyboard
-				titleText.ResignFirstResponder ();
-
-				NavigationController.PopToRootViewController (true);
-
-				// save to Parse
-				try {
-					await task.ToParseObject().SaveAsync();
-					await screen.ReloadAsync();
-				} catch (ParseException pe) {
-					Console.WriteLine ("Parse Exception:{0}", pe.Message);
-				} finally {
-
-				}
-			};
-
-			deleteButton.TouchUpInside += async (sender, e) => {
-
-				descriptionText.ResignFirstResponder ();			// hide keyboard
-				titleText.ResignFirstResponder ();
-
-				NavigationController.PopToRootViewController (true); 
-
-				// delete from Parse
-				try {
-					UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
-					await task.ToParseObject().DeleteAsync();
-					await screen.ReloadAsync();
-				} catch (ParseException pe) {
-					Console.WriteLine ("Parse Exception:{0}", pe.Message);
-				} finally {
-					UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
-				}
-			};
+			deleteButton.TouchUpInside += Delete;
+//			async (sender, e) => {
+//
+//				descriptionText.ResignFirstResponder ();			// hide keyboard
+//				titleText.ResignFirstResponder ();
+//
+//				NavigationController.PopToRootViewController (true); 
+//
+//				// delete from Parse
+//				try {
+//					UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+//					await task.ToParseObject().DeleteAsync();
+//					await screen.ReloadAsync();
+//				} catch (ParseException pe) {
+//					Console.WriteLine ("Parse Exception:{0}", pe.Message);
+//				} finally {
+//					UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+//				}
+//			};
 
 			await Populate ();
 		}
@@ -126,6 +128,7 @@ namespace Parse {
 
 			try {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+
 				var query = ParseObject.GetQuery("Task").WhereEqualTo("objectId", task.Id);
 				var t = await query.FirstAsync();
 				ta = Task.FromParseObject (t);
@@ -136,7 +139,6 @@ namespace Parse {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			}
 
-
 			//Title = task.Title??"";
 			titleText.Text = ta.Title??"";
 			descriptionText.Text = ta.Description??"";
@@ -145,6 +147,47 @@ namespace Parse {
 			saveButton.Enabled = true;
 			doneSwitch.Enabled = true;
 			deleteButton.Enabled = true;
+		}
+
+		protected async void Save (object sender, EventArgs e)
+		{
+			task.Title = titleText.Text;
+			task.Description = descriptionText.Text;
+			task.IsDone = doneSwitch.On;
+
+			descriptionText.ResignFirstResponder ();			// hide keyboard
+			titleText.ResignFirstResponder ();
+
+			NavigationController.PopToRootViewController (true);
+
+			// save to Parse
+			try {
+				await task.ToParseObject().SaveAsync();
+				await screen.ReloadAsync();
+			} catch (ParseException pe) {
+				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+			} finally {
+
+			}
+		}
+
+		protected async void Delete (object sender, EventArgs e)
+		{
+			descriptionText.ResignFirstResponder ();			// hide keyboard
+			titleText.ResignFirstResponder ();
+
+			NavigationController.PopToRootViewController (true); 
+
+			// delete from Parse
+			try {
+				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
+				await task.ToParseObject().DeleteAsync();
+				await screen.ReloadAsync();
+			} catch (ParseException pe) {
+				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+			} finally {
+				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
+			}
 		}
 	}
 }

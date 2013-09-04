@@ -18,11 +18,10 @@
     <DefineConstants>DEBUG;__MOBILE__</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <ConsolePause>False</ConsolePause>
     <MtouchI18n />
-    <MtouchSdkVersion>5.0</MtouchSdkVersion>
+    <MtouchSdkVersion>6.1</MtouchSdkVersion>
     <AssemblyName>iCloud</AssemblyName>
     <MtouchArch>ARMv7</MtouchArch>
   </PropertyGroup>
