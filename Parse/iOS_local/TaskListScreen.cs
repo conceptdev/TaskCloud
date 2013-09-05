@@ -47,16 +47,19 @@ namespace Parse {
 		public async override void ViewWillAppear (bool animated)
 		{
 			base.ViewWillAppear (animated);
-			await ReloadAsync(); //Reload ();
+			await ReloadAsync();
 		}
 
 		public async System.Threading.Tasks.Task ReloadAsync()
 		{
 			try {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
-				tasks = await Task.GetAll();
-			} catch (ParseException pe) {
-				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+
+				tasks = AppDelegate.Database.GetItems(); 
+				// TODO: get all from the cloud
+				//tasks = await Task.GetAll();
+			} catch (Exception pe) {
+				Console.WriteLine ("Exception:{0}", pe.Message);
 			} finally {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			}
@@ -64,7 +67,7 @@ namespace Parse {
 		}
 
 		public void Reload() {
-			Console.WriteLine ("Reload MonoTouch.Dialog");
+			Console.WriteLine ("Reload");
 		
 			var tasklist = from task in tasks
 				orderby task.Title

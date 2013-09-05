@@ -27,7 +27,7 @@ namespace Parse {
 			return string.Format ("[Task: Title={0}, Description={1}, IsDone={2}]", Title, Description, IsDone);
 		}
 
-#if __MOBILE__
+
 		public ParseObject ToParseObject ()
 		{
 			var po = new ParseObject("Task");
@@ -62,6 +62,5 @@ namespace Parse {
 
 			return tl;
 		}
-#endif
 	}
 }

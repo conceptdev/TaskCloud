@@ -61,8 +61,8 @@
     <Compile Include="Adapters\TaskListAdapter.cs" />
     <Compile Include="TaskScreen.cs" />
     <Compile Include="TaskListScreen.cs" />
-    <Compile Include="Task.cs" />
     <Compile Include="App.cs" />
+    <Compile Include="Shared\Task.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\AboutAssets.txt" />
@@ -91,5 +91,6 @@
   <ItemGroup>
     <Folder Include="Resources\values-v11\" />
     <Folder Include="Resources\values-v14\" />
+    <Folder Include="Shared\" />
   </ItemGroup>
 </Project>

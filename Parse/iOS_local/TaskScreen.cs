@@ -90,11 +90,14 @@ namespace Parse {
 			try {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
 
-				var query = ParseObject.GetQuery("Task").WhereEqualTo("objectId", task.Id);
-				var t = await query.FirstAsync();
-				ta = Task.FromParseObject (t);
-			} catch (ParseException pe) {
-				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+				ta = AppDelegate.Database.GetItem(task.Id); //Task.FromParseObject (t);
+				//TODO: get the latest copy of this item from the cloud
+//				var query = ParseObject.GetQuery("Task").WhereEqualTo("objectId", task.Id);
+//				var t = await query.FirstAsync();
+
+				if (ta == null) ta = new Task();
+			} catch (Exception pe) {
+				Console.WriteLine ("Exception:{0}", pe.Message);
 			} finally {
 				Title = ""; // clear "loading..." message
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
@@ -121,12 +124,15 @@ namespace Parse {
 
 			NavigationController.PopToRootViewController (true);
 
-			// save to Parse
+			// save 
 			try {
-				await task.ToParseObject().SaveAsync();
+				AppDelegate.Database.SaveItem(task);
+				// TODO: save to cloud
+				//await task.ToParseObject().SaveAsync();
+
 				await screen.ReloadAsync();
-			} catch (ParseException pe) {
-				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+			} catch (Exception pe) {
+				Console.WriteLine ("Exception:{0}", pe.Message);
 			} 
 		}
 
@@ -137,13 +143,17 @@ namespace Parse {
 
 			NavigationController.PopToRootViewController (true); 
 
-			// delete from Parse
+			// delete 
 			try {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = true;
-				await task.ToParseObject().DeleteAsync();
+
+				AppDelegate.Database.DeleteItem(task.Id);
+				// TODO: delete from the cloud
+				//await task.ToParseObject().DeleteAsync();
+
 				await screen.ReloadAsync();
-			} catch (ParseException pe) {
-				Console.WriteLine ("Parse Exception:{0}", pe.Message);
+			} catch (Exception pe) {
+				Console.WriteLine ("Exception:{0}", pe.Message);
 			} finally {
 				UIApplication.SharedApplication.NetworkActivityIndicatorVisible = false;
 			}
