@@ -28,6 +28,8 @@ namespace TaskyDrop
 	{
 		const string DropboxSyncKey = "YOUR_APP_ID";
 		const string DropboxSyncSecret = "YOUR_APP_SECRET";
+		// Visit https://www.dropbox.com/developers to get these values. 
+		// DON'T FORGET to add the key to the iOS Application Properties URL Scheme (with 'db-' prefix)
 
 		UINavigationController navController;
 
