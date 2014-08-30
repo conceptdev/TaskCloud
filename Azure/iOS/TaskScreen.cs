@@ -10,9 +10,9 @@ namespace Azure {
 		UISwitch doneSwitch;
 		UITextView descriptionText, titleText;
 
-		Task task;
+		TodoItem task;
 		
-		public TaskScreen (Task t) {
+		public TaskScreen (TodoItem t) {
 			task = t;
 		}
 

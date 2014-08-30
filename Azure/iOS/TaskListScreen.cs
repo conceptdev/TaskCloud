@@ -15,19 +15,19 @@ namespace Azure {
 
 		UIBarButtonItem addButton, refreshButton;
 		
-		List<Task> tasks; // local copy of task list
+		List<TodoItem> tasks; // local copy of task list
 
 		public TaskListScreen () : base (UITableViewStyle.Plain, new RootElement("Loading..."))
 		{
 			Title = "TaskyAzure";
-			tasks = new List<Task>();
+			tasks = new List<TodoItem>();
 		}
 
 		public override void ViewDidLoad ()
 		{
 			base.ViewDidLoad ();
 			addButton = new UIBarButtonItem(UIBarButtonSystemItem.Add, (s,e) =>{
-				var task = new Task() {Title="<new task>"};
+				var task = new TodoItem() {Title="<new task>"};
 				// Save to Azure
 				var added = AzureWebService.AddTodo (task);
 				tasks.Add (added);

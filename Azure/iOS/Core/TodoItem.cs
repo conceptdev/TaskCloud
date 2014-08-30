@@ -9,12 +9,12 @@ using System.Json;
 
 namespace Azure {
 	[Preserve]	
-	public class Task {
-		public Task () 
+	public class TodoItem {
+		public TodoItem () 
 		{
 			Id = -1;
 		}
-		public Task (JsonValue json)
+		public TodoItem (JsonValue json)
 		{
 			Id = json["id"];
 			Title = json["text"];

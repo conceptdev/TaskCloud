@@ -28,9 +28,9 @@ namespace Azure
 		/// <summary>
 		/// GET /tables/TodoItem
 		/// </summary>
-		public static List<Task> LoadTodos(Action whenDone) 
+		public static List<TodoItem> LoadTodos(Action whenDone) 
 		{
-			var tasks = new List<Task>();
+			var tasks = new List<TodoItem>();
 			WebClient client = new WebClient();
 			try {
 				// make it synchronous
@@ -45,10 +45,10 @@ namespace Azure
 				
 				if (responseJson != null)
 				{
-					tasks = new List<Task>();
+					tasks = new List<TodoItem>();
 					for (var j = 0;j <responseJson.Count; j++) {
 						var t = responseJson[j];// as JsonValue;
-						var task = new Task(t);
+						var task = new TodoItem(t);
 						
 						tasks.Add (task);
 					}
@@ -66,9 +66,9 @@ namespace Azure
 		/// <summary>
 		/// GET /tables/TodoItem/{id}
 		/// </summary>
-		public static Task GetTodo(int id) 
+		public static TodoItem GetTodo(int id) 
 		{
-			Task task = null;
+			TodoItem task = null;
 			WebClient client = new WebClient();
 			try {
 				// make it synchronous
@@ -85,7 +85,7 @@ namespace Azure
 				{
 					for (var j = 0; j < responseJson.Count; j++) {
 						var t = responseJson[j];// as JsonValue;
-						task = new Task(t);
+						task = new TodoItem(t);
 						break; // just one required :)
 					}
 				}
@@ -102,7 +102,7 @@ namespace Azure
 		/// PATCH /tables/TodoItem/{id}
 		/// {"id":1,"text":"updated task text","complete":false}
 		/// </summary>
-		public static void UpdateTodo(Task t) 
+		public static void UpdateTodo(TodoItem t) 
 		{
 			WebClient client = new WebClient();
 			try {
@@ -128,7 +128,7 @@ namespace Azure
 		/// POST /tables/TodoItem
 		/// {"text":"new task text","complete":false}
 		/// </summary>
-		public static Task AddTodo(Task t) 
+		public static TodoItem AddTodo(TodoItem t) 
 		{
 			WebClient client = new WebClient();
 			try {
@@ -145,7 +145,7 @@ namespace Azure
 				Console.WriteLine ("Add Json response => " + responseString);
 
 				var responseJson = JsonValue.Parse (responseString);
-				return new Task(responseJson);
+				return new TodoItem(responseJson);
 
 			} catch (System.Net.WebException e) {
 				Console.WriteLine ("X-ZUMO-APPLICATION add failed" + e.Message);
@@ -156,7 +156,7 @@ namespace Azure
 		/// <summary>
 		/// DELETE /tables/TodoItem/{id}
 		/// </summary>
-		public static void DeleteTodo(Task t) 
+		public static void DeleteTodo(TodoItem t) 
 		{
 			WebClient client = new WebClient();
 			try {

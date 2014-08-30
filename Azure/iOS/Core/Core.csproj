@@ -40,6 +40,6 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
     <Compile Include="AzureWebService.cs" />
-    <Compile Include="Task.cs" />
+    <Compile Include="TodoItem.cs" />
   </ItemGroup>
 </Project>
