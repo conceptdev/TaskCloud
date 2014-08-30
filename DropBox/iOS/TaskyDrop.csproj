@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{367D4ECC-D04A-41FB-A784-4D10F30666C8}</ProjectGuid>
     <ProjectTypeGuids>{6BC8ED88-2882-458C-8E55-DFD12B67127B};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -21,7 +21,8 @@
     <MtouchLink>None</MtouchLink>
     <MtouchDebug>True</MtouchDebug>
     <ConsolePause>False</ConsolePause>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <MtouchSdkVersion>5.0</MtouchSdkVersion>
     <AssemblyName>iCloud</AssemblyName>
     <MtouchArch>ARMv7</MtouchArch>
@@ -34,7 +35,8 @@
     <WarningLevel>4</WarningLevel>
     <MtouchLink>None</MtouchLink>
     <ConsolePause>False</ConsolePause>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <AssemblyName>iCloud</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
@@ -50,8 +52,10 @@
     <ConsolePause>False</ConsolePause>
     <MtouchSdkVersion>5.0</MtouchSdkVersion>
     <BuildIpa>True</BuildIpa>
-    <IpaPackageName />
-    <MtouchI18n />
+    <IpaPackageName>
+    </IpaPackageName>
+    <MtouchI18n>
+    </MtouchI18n>
     <AssemblyName>iCloudSample</AssemblyName>
     <MtouchLink>Full</MtouchLink>
     <MtouchArch>ARMv7</MtouchArch>
@@ -65,7 +69,8 @@
     <ConsolePause>False</ConsolePause>
     <CodesignKey>iPhone Developer: Craig Dunn (6Q937X2U43)</CodesignKey>
     <MtouchLink>None</MtouchLink>
-    <MtouchI18n />
+    <MtouchI18n>
+    </MtouchI18n>
     <AssemblyName>iCloudSample</AssemblyName>
     <CodesignProvision>CFA558A3-468A-48C2-9744-4B8BD0A9B79C</CodesignProvision>
   </PropertyGroup>
@@ -77,7 +82,7 @@
     <Reference Include="MonoTouch.Dialog-1" />
     <Reference Include="System.Json" />
     <Reference Include="DropBoxSync.iOS">
-      <HintPath>Components\dropboxsync-1.9\lib\ios\DropBoxSync.iOS.dll</HintPath>
+      <HintPath>Components\dropboxsync-3.0.2\lib\ios\DropBoxSync.iOS.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -89,6 +94,7 @@
     <Compile Include="TaskiOSExtensions.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.MonoTouch.CSharp.targets" />
   <ItemGroup>
     <None Include="Info.plist" />
   </ItemGroup>
@@ -108,8 +114,7 @@
   </ItemGroup>
   <ItemGroup>
     <XamarinComponentReference Include="dropboxsync">
-      <InstallationInProgress>False</InstallationInProgress>
-      <Version>1.9</Version>
+      <Version>3.0.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>

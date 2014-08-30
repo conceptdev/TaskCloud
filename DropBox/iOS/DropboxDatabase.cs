@@ -43,13 +43,15 @@ namespace TaskyDrop
 			if (store != null)
 				return;
 			DBError error;
-			store = DBDatastore.OpenDefaultStoreForAccount (DBAccountManager.SharedManager.LinkedAccount, out error);
-			var sync = store.Sync (null);
+			store = DBDatastore.OpenDefaultStore (DBAccountManager.SharedManager.LinkedAccount, out error);
+			DBError error1;
+			var sync = store.Sync (out error1);
 
 			store.AddObserver (store, () => {
 				Console.Write("store observer ");
 
-				store.Sync(null); // needed?
+				DBError error2;
+				store.Sync(out error2); // needed?
 
 				var table = store.GetTable (tableName);
 				var results = table.Query (null, out error);
@@ -67,7 +69,8 @@ namespace TaskyDrop
 					if(!AutoUpdating)
 						return;
 					//Console.WriteLine("AutoUpdating"); // SPAM
-					store.Sync(null);
+					DBError error3;
+					store.Sync(out error3);
 				});
 			});
 		}
@@ -123,11 +126,11 @@ namespace TaskyDrop
 			else 
 				r.Update (t); 
 
-			store.SyncAsync (null);
+			store.SyncAsync ();
 		}
 		public void Update()
 		{
-			store.SyncAsync (null);
+			store.SyncAsync ();
 		}
 		public void Delete (Task t)
 		{
@@ -137,7 +140,7 @@ namespace TaskyDrop
 			var r = table.GetRecord (t.id, out error);
 			r.DeleteRecord();
 
-			store.SyncAsync (null);
+			store.SyncAsync ();
 		}
 	}
 }

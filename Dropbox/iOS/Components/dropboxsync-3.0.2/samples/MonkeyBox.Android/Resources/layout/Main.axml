@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:id="@+id/main">
+    <MonkeyBox.Android.MonkeyView
+        android:src="@drawable/Fred"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Fred"
+        android:scaleType="matrix"
+        android:adjustViewBounds="true"
+        android:minWidth="100px"
+        android:minHeight="100px" />
+    <MonkeyBox.Android.MonkeyView
+        android:src="@drawable/George"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/George"
+        android:scaleType="matrix"
+        android:adjustViewBounds="true"
+        android:minWidth="100px"
+        android:minHeight="100px" />
+    <MonkeyBox.Android.MonkeyView
+        android:src="@drawable/Nim"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Nim"
+        android:scaleType="matrix"
+        android:adjustViewBounds="true"
+        android:minWidth="100px"
+        android:minHeight="100px" />
+    <MonkeyBox.Android.MonkeyView
+        android:src="@drawable/Hootie"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Hootie"
+        android:scaleType="matrix"
+        android:adjustViewBounds="true"
+        android:minWidth="100px"
+        android:minHeight="100px" />
+    <MonkeyBox.Android.MonkeyView
+        android:src="@drawable/Julian"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Julian"
+        android:scaleType="matrix"
+        android:adjustViewBounds="true"
+        android:minWidth="100px"
+        android:minHeight="100px" />
+    <MonkeyBox.Android.MonkeyView
+        android:src="@drawable/Pepe"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/Pepe"
+        android:scaleType="matrix"
+        android:adjustViewBounds="true"
+        android:minWidth="100px"
+        android:minHeight="100px" />
+</RelativeLayout>
